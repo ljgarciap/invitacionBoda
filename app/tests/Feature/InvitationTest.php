@@ -81,7 +81,7 @@ class InvitationTest extends TestCase
         $guest = Guest::factory()->create();
 
         $this->get("/i/{$guest->code}")
-            ->assertSee('property="og:image" content="'.asset('invitacion/img/og.jpg').'"', false)
+            ->assertSee('property="og:image" content="'.asset('invitacion/img/og.jpg').'?v='.filemtime(public_path('invitacion/img/og.jpg')).'"', false)
             ->assertSee('property="og:image:width" content="1200"', false)
             ->assertSee('property="og:type" content="website"', false)
             ->assertSee('property="og:url" content="'.url("/i/{$guest->code}").'"', false);
