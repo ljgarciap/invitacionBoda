@@ -50,6 +50,35 @@ class Guest extends Model
         return 'code';
     }
 
+    public function invitationUrl(): string
+    {
+        return route('invitation.show', $this);
+    }
+
+    /** Teléfono solo con dígitos; un celular colombiano de 10 dígitos recibe el prefijo 57. */
+    public function whatsappPhone(): ?string
+    {
+        $digits = preg_replace('/\D+/', '', (string) $this->phone);
+
+        if ($digits === '') {
+            return null;
+        }
+
+        return strlen($digits) === 10 && $digits[0] === '3' ? '57'.$digits : $digits;
+    }
+
+    /** Sin teléfono, wa.me deja elegir el contacto manualmente. */
+    public function whatsappUrl(): string
+    {
+        $text = str_replace(
+            ['{nombre}', '{link}'],
+            [$this->name, $this->invitationUrl()],
+            config('wedding.whatsapp_message'),
+        );
+
+        return 'https://wa.me/'.$this->whatsappPhone().'?text='.rawurlencode($text);
+    }
+
     public static function rsvpIsOpen(?Carbon $now = null): bool
     {
         $deadline = Carbon::parse(config('wedding.rsvp_deadline'), config('app.timezone'));
@@ -101,6 +130,18 @@ class Guest extends Model
             'diet' => null,
             'message' => $message ?: null,
             'responded_at' => now(),
+        ])->save();
+    }
+
+    public function resetResponse(): void
+    {
+        $this->forceFill([
+            'status' => GuestStatus::Pending,
+            'attending' => null,
+            'attendee_names' => null,
+            'diet' => null,
+            'message' => null,
+            'responded_at' => null,
         ])->save();
     }
 

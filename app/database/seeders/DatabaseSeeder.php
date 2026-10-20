@@ -11,6 +11,10 @@ class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
+        if (app()->isProduction() && ! env('ADMIN_PASSWORD')) {
+            throw new \RuntimeException('Define ADMIN_PASSWORD en el .env antes de sembrar en producción.');
+        }
+
         // Usuario único y compartido del panel (Daniela y Miguel Ángel).
         // Credenciales desde el .env; nunca van en el código.
         User::updateOrCreate(

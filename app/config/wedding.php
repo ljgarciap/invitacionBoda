@@ -17,6 +17,9 @@ return [
         'address' => env('WEDDING_VENUE_ADDRESS', 'Cl. 70 #33-376, Bucaramanga'),
     ],
 
+    // Mensaje de WhatsApp para enviar cada invitación. Variables: {nombre} y {link}.
+    'whatsapp_message' => env('WEDDING_WHATSAPP_MESSAGE', 'Hola {nombre}, tenemos algo especial para ti 💌 {link}'),
+
     // Tema visual de la invitación: 'clasico' (nacarado y dorado) o 'botanico' (papel verde).
     'themes' => ['clasico', 'botanico'],
     'theme' => env('WEDDING_THEME', 'clasico'),

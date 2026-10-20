@@ -1,0 +1,44 @@
+:root { --green: #3f5a3a; --gold: #b07a2f; --bg: #f6f2e8; --ink: #33382c; --line: #ddd5c0; --muted: #7d7a6a; --wa: #1f9d55; --red: #a33a3a; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 400 16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; }
+.top { display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: var(--green); color: #f6f1e4; }
+.top .brand { color: inherit; text-decoration: none; font-weight: 500; }
+.top .link { background: none; border: 0; color: inherit; text-decoration: underline; cursor: pointer; font: inherit; }
+.wrap { width: min(980px, 100% - 24px); margin: 18px auto 60px; }
+h1 { font-size: 1.5rem; margin: 0 0 14px; } h2 { font-size: 1.1rem; margin: 0 0 8px; } h3 { font-size: 1.05rem; margin: 0; }
+.panel { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 20px; margin-bottom: 16px; }
+.panel.narrow { max-width: 520px; margin-inline: auto; margin-bottom: 16px; }
+.panel.danger { border-color: #e6c3c3; }
+label { display: block; margin-bottom: 14px; font-size: .95rem; }
+label.check { display: flex; gap: 8px; align-items: center; }
+label em { color: var(--muted); }
+input[type=text], input[type=email], input[type=password], input[type=number], input[type=search], select, input[type=file] {
+  display: block; width: 100%; margin-top: 4px; padding: .65rem .75rem; font: inherit; border: 1px solid var(--line); border-radius: 10px; background: #fff; }
+input:focus, select:focus { outline: 2px solid #b9cfa8; border-color: var(--green); }
+.btn { display: inline-block; padding: .6rem 1rem; border-radius: 999px; border: 1px solid var(--green); background: var(--green); color: #fff; text-decoration: none; font: 500 .9rem system-ui; cursor: pointer; }
+.btn.ghost { background: #fff; color: var(--green); }
+.btn.wa { background: var(--wa); border-color: var(--wa); }
+.btn.danger { background: var(--red); border-color: var(--red); }
+.actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.flash { padding: 12px 14px; border-radius: 10px; margin-bottom: 14px; }
+.flash.ok { background: #e3f1dc; border: 1px solid #b9d8ac; }
+.flash.warn { background: #fdf2d8; border: 1px solid #ecd493; } .flash ul { margin: 6px 0 0; padding-left: 18px; }
+.error { color: var(--red); margin: -6px 0 12px; font-size: .9rem; }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 16px; }
+.stats div { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 12px; text-align: center; }
+.stats b { display: block; font-size: 1.8rem; color: var(--green); line-height: 1.1; }
+.stats span { font-size: .78rem; color: var(--muted); }
+.bar { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; margin-bottom: 12px; }
+.filters { display: flex; gap: 8px; flex: 1 1 320px; } .filters input, .filters select { margin: 0; }
+.filters select { width: auto; }
+.list { display: grid; gap: 10px; margin-bottom: 24px; }
+.guest { display: flex; flex-wrap: wrap; gap: 10px; justify-content: space-between; align-items: center; background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 14px; }
+.guest p { margin: 4px 0 0; }
+.guest__actions { display: flex; flex-wrap: wrap; gap: 6px; }
+.meta { color: var(--muted); font-size: .88rem; } .dim { opacity: .7; }
+.badge { display: inline-block; padding: .1rem .6rem; border-radius: 999px; font-size: .8rem; font-weight: 500; }
+.badge.pending { background: #f1ead6; color: #7a6420; } .badge.accepted { background: #d9efd0; color: #2c5c1f; } .badge.declined { background: #f4dada; color: #8a2d2d; }
+.empty { text-align: center; color: var(--muted); padding: 30px 0; }
+code { background: #f0ebdb; padding: .1rem .35rem; border-radius: 6px; font-size: .88em; }
+code.url { word-break: break-all; display: block; padding: .5rem; }
+.import form { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; } .import input[type=file] { flex: 1 1 220px; margin: 0; }
