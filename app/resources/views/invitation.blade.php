@@ -144,6 +144,7 @@
   <!-- ============ ITINERARIO ============ -->
   <section class="section section--pearl" id="itinerario">
     <div class="wrap narrow">
+     <div class="itin-card">
       <div class="center reveal">
         <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5C5 16 2.5 12.600 2.500 9.200 2.500 6.700 4.400 5 6.700 5c2.200 0 3.800 1.300 5.300 3.200C13.500 6.300 15.100 5 17.300 5c2.300 0 4.200 1.700 4.200 4.200 0 3.400-2.500 6.800-9.500 11.300z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
         <h2 class="script h2">Nuestro gran día</h2>
@@ -159,6 +160,7 @@
         <li class="reveal"><time>11:00 PM</time><span>Hora loca</span></li>
         <li class="reveal"><time>1:00 AM</time><span>Fin de nuestra celebración</span></li>
       </ol>
+     </div>
       <p class="center timeline__close reveal">¡Prepárate para una noche llena de amor, sorpresas y mucha fiesta!</p>
     </div>
   </section>

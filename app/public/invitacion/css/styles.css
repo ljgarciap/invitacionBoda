@@ -129,6 +129,13 @@ a { color: inherit; }
 .timeline time { font-weight: 500; color: var(--gold-dk); font-size: .95rem; padding-right: 16px; text-align: right; border-right: 2px solid var(--line); }
 .timeline span { padding-left: 18px; font-size: 1.05rem; }
 .timeline li:first-child span, .timeline li:nth-child(2) span { font-weight: 500; }
+/* Tarjeta del itinerario: las rosas quedan arriba y los anillos abajo, el texto va en el centro limpio. */
+.itin-card { max-width: 440px; margin-inline: auto; padding: 132px 24px 310px; border-radius: 18px; background: #f3e6dc url("../img/itinerario-fondo.webp") center / cover; box-shadow: 0 14px 34px rgba(80,60,30,.18); color: var(--ink); }
+.itin-card .timeline { margin-top: 22px; }
+.itin-card .timeline li { padding: 7px 0; }
+.itin-card .heart { margin-bottom: 4px; }
+.itin-card .h2 { font-size: clamp(2rem, 8vw, 2.6rem); }
+.itin-card + .timeline__close { margin-top: 2rem; }
 .timeline__close { font-family: var(--serif); font-style: italic; font-size: 1.3rem; margin: 1.8rem 0 0; }
 
 /* ---------- Lugar ---------- */
