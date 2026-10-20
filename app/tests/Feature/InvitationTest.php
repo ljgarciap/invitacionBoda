@@ -5,6 +5,7 @@ namespace Tests\Feature;
 use App\Enums\GuestStatus;
 use App\Models\Guest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 
 class InvitationTest extends TestCase
@@ -39,6 +40,59 @@ class InvitationTest extends TestCase
         $this->get("/i/{$guest->code}?tema=<script>")
             ->assertSee('data-theme="clasico"', false)
             ->assertDontSee('<script>alert', false);
+    }
+
+    public function test_incluye_la_vista_previa_para_whatsapp(): void
+    {
+        $guest = Guest::factory()->create();
+
+        $this->get("/i/{$guest->code}")
+            ->assertSee('property="og:image" content="'.asset('invitacion/img/og.jpg').'"', false)
+            ->assertSee('property="og:image:width" content="1200"', false)
+            ->assertSee('property="og:type" content="website"', false)
+            ->assertSee('property="og:url" content="'.url("/i/{$guest->code}").'"', false);
+        $this->assertFileExists(public_path('invitacion/img/og.jpg'));
+        $this->assertLessThan(300 * 1024, filesize(public_path('invitacion/img/og.jpg')));
+    }
+
+    public function test_la_vista_previa_no_incluye_el_nombre_del_invitado(): void
+    {
+        $guest = Guest::factory()->create(['name' => 'Familia Secreta']);
+
+        $html = $this->get("/i/{$guest->code}")->getContent();
+        preg_match_all('/<meta property="og:[^>]+>/', $html, $m);
+
+        $this->assertStringNotContainsString('Secreta', implode('', $m[0]));
+    }
+
+    #[DataProvider('robots')]
+    public function test_los_robots_de_vista_previa_no_cuentan_como_apertura(string $userAgent): void
+    {
+        $guest = Guest::factory()->create();
+
+        $this->withHeader('User-Agent', $userAgent)->get("/i/{$guest->code}")->assertOk();
+
+        $this->assertNull($guest->fresh()->first_opened_at);
+    }
+
+    public static function robots(): array
+    {
+        return [
+            'whatsapp' => ['WhatsApp/2.23.20.0 A'],
+            'facebook' => ['facebookexternalhit/1.1 (+http://www.facebook.com/externalhit_uatext.php)'],
+            'telegram' => ['TelegramBot (like TwitterBot)'],
+            'google' => ['Mozilla/5.0 (compatible; Googlebot/2.1)'],
+        ];
+    }
+
+    public function test_un_navegador_real_si_cuenta_como_apertura(): void
+    {
+        $guest = Guest::factory()->create();
+        $ua = 'Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 Mobile/15E148 Safari/604.1';
+
+        $this->withHeader('User-Agent', $ua)->get("/i/{$guest->code}")->assertOk();
+
+        $this->assertNotNull($guest->fresh()->first_opened_at);
     }
 
     public function test_un_cupo_se_escribe_en_singular(): void

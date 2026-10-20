@@ -14,7 +14,10 @@ class InvitationController extends Controller
 {
     public function show(Request $request, Guest $guest): Response
     {
-        $guest->markOpened();
+        // WhatsApp, Telegram, etc. visitan el link para armar la vista previa: no es que el invitado lo abriera.
+        if (! $this->isLinkPreviewBot($request)) {
+            $guest->markOpened();
+        }
 
         // ?tema=... solo sirve para comparar versiones; el definitivo sale de WEDDING_THEME.
         $themes = config('wedding.themes');
@@ -73,5 +76,13 @@ class InvitationController extends Controller
             'status' => $guest->status->value,
             'attending' => $guest->attending,
         ]);
+    }
+
+    private function isLinkPreviewBot(Request $request): bool
+    {
+        return (bool) preg_match(
+            '/bot|crawler|spider|preview|facebookexternalhit|whatsapp|telegram|slack|discord|skype|linkedin|embedly|curl|wget/i',
+            (string) $request->userAgent(),
+        );
     }
 }

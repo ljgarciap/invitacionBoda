@@ -54,7 +54,7 @@ Para salir: **Salir** (arriba a la derecha). En el celular funciona igual que en
 
 En la lista, cada invitado tiene tres botones:
 
-- **WhatsApp** — abre WhatsApp con el mensaje ya escrito: *“Hola Familia Pérez, tenemos algo especial para ti 💌 (su link)”*.
+- **WhatsApp** — abre WhatsApp con el mensaje ya escrito: *“Hola Familia Pérez, tenemos algo muy especial para ti: nuestra invitación de boda. Ábrela aquí: (su link)”*.
   Solo toquen **enviar**. Si no cargaron teléfono, WhatsApp les deja elegir el contacto.
 - **Copiar link** — para pegarlo donde quieran (Instagram, correo…).
 - **Editar** — cambiar nombre, cupos o teléfono, y ver su respuesta completa.
@@ -132,7 +132,8 @@ pídanle a Luis fijar una (es un cambio de una línea en el servidor).
 - **¿Qué pasa si dos personas de la misma familia usan el mismo link?** Es **una sola respuesta** por link; la
   última que se guarde es la que cuenta. Pídanles que lo confirmen entre ellos.
 - **¿Se pierde algo si se cae el servidor?** Hagan respaldo (ver guía de despliegue) y exporten el CSV con frecuencia.
-- **¿Se puede cambiar el mensaje de WhatsApp?** Sí, pidanle a Luis; es un texto configurable.
+- **¿Se puede cambiar el mensaje de WhatsApp?** Sí, pídanle a Luis; es un texto configurable. Está sin emojis a propósito: WhatsApp de escritorio los muestra como “�” cuando el mensaje sale de un link.
+- **¿Cómo se ve el link en WhatsApp?** Con una foto de ustedes, el título “Miguel Ángel & Daniela · Nuestra Boda” y la fecha. Si probaron antes con un link y no salía la foto, es que WhatsApp guarda en memoria la vista previa vieja: envíen una invitación **nueva** (otro link) para verla.
 
 ## 12. A quién acudir
 

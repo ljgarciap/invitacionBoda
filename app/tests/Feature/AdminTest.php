@@ -205,7 +205,16 @@ class AdminTest extends TestCase
 
         $this->assertStringStartsWith('https://wa.me/573001234567?text=', $url);
         $text = urldecode(substr($url, strpos($url, 'text=') + 5));
-        $this->assertSame("Hola Familia Pérez, tenemos algo especial para ti 💌 {$guest->invitationUrl()}", $text);
+        $this->assertSame(
+            "Hola Familia Pérez, tenemos algo muy especial para ti: nuestra invitación de boda. Ábrela aquí: {$guest->invitationUrl()}",
+            $text,
+        );
+    }
+
+    public function test_el_mensaje_de_whatsapp_por_defecto_no_lleva_emoji(): void
+    {
+        // Los clientes de WhatsApp de escritorio muestran el emoji de wa.me como "�".
+        $this->assertDoesNotMatchRegularExpression('/[\x{1F000}-\x{1FFFF}\x{2600}-\x{27BF}]/u', config('wedding.whatsapp_message'));
     }
 
     public function test_sin_telefono_deja_elegir_el_contacto(): void

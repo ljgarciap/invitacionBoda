@@ -12,7 +12,10 @@ Dominio: `miguelydaniela.site` · Stack: Laravel 13, PHP 8.4, MySQL/MariaDB · R
 
 - [ ] El dominio `miguelydaniela.site` está agregado al plan en hPanel y apunta a Hostinger.
 - [ ] Tienes acceso SSH (hPanel → *Avanzado* → *Acceso SSH*): host, puerto y usuario. Anótalos.
-- [ ] La versión de PHP del sitio es **8.4** (hPanel → *Avanzado* → *Configuración de PHP*).
+- [ ] La versión de PHP **de la web** es **8.4**: hPanel → *Sitios web* → `miguelydaniela.site` →
+      *Avanzado* → *Configuración de PHP*. **Se configura por dominio y es independiente del PHP de SSH**:
+      aunque `php -v` por SSH diga 8.4, la web puede seguir en otra versión (nos pasó: la web estaba en 8.3
+      y todo daba 500 sin ningún log, porque las dependencias exigen 8.4). Verifícalo **antes de empezar**.
       Extensiones necesarias (activas por defecto casi siempre): `pdo_mysql`, `mbstring`, `openssl`,
       `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`.
 - [ ] El repositorio es accesible desde el servidor (ver paso 3).
@@ -51,10 +54,18 @@ como contraseña, o configura una *deploy key* de solo lectura. Alternativa sin 
 
 ## 4. Instalar dependencias (sin las de desarrollo)
 
+En el CLI de Hostinger PHP tiene **desactivadas** varias funciones (`proc_open`, `exec`, `shell_exec`,
+`symlink`…). Por eso `composer install` normal falla al final con *"The Process class relies on proc_open"*.
+Se instala sin scripts y se quita la restricción **solo en los comandos `artisan`** con `-d disable_functions=`:
+
 ```bash
 $ cd ~/domains/miguelydaniela.site/invitacion/app
-$ composer install --no-dev --optimize-autoloader --no-interaction
+$ composer install --no-dev --optimize-autoloader --no-interaction --no-scripts
+$ php -d disable_functions= artisan package:discover --ansi
+$ alias art='php -d disable_functions= artisan'     # válido solo en esta sesión SSH
 ```
+
+En el resto de la guía, `art` equivale a `php artisan` con ese prefijo. (La web no necesita esas funciones.)
 
 No hay build de Node: los estilos, scripts, imágenes y la canción ya están en `public/invitacion/`.
 
@@ -69,7 +80,7 @@ Completa: `DB_DATABASE`, `DB_USERNAME`, `DB_PASSWORD` (paso 1). El resto ya vien
 (`APP_ENV=production`, `APP_DEBUG=false`, `APP_URL=https://miguelydaniela.site`).
 
 ```bash
-$ php artisan key:generate --force      # genera APP_KEY
+$ art key:generate --force      # genera APP_KEY
 ```
 
 > ⚠️ **Haz una copia del `.env` completo en tu gestor de claves.** Si se pierde `APP_KEY` se invalidan
@@ -84,12 +95,12 @@ $ chmod -R 775 storage bootstrap/cache
 ## 7. Base de datos y usuario del panel
 
 ```bash
-$ php artisan migrate --force
-$ php artisan admin:password            # pide la clave dos veces, sin mostrarla
+$ art migrate --force
+$ art admin:password            # pide la clave dos veces, sin mostrarla
 ```
 
 `admin:password` crea (o actualiza) el usuario único del panel: correo `admin@miguelydaniela.site`
-(o `php artisan admin:password otro@correo.com`). La clave debe tener **mínimo 12 caracteres**.
+(o `art admin:password otro@correo.com`). La clave debe tener **mínimo 12 caracteres**.
 **No uses `db:seed` en producción** (es solo para datos de muestra locales).
 
 ## 8. Publicar: apuntar el dominio a `public/`
@@ -118,10 +129,10 @@ hPanel → *Seguridad* → *SSL* → instalar el certificado gratuito para `migu
 
 ```bash
 $ cd ~/domains/miguelydaniela.site/invitacion/app
-$ php artisan config:cache && php artisan route:cache && php artisan view:cache
+$ art config:cache && art route:cache && art view:cache
 ```
 
-> Después de **cualquier cambio en `.env`** hay que correr `php artisan config:clear` y volver a cachear,
+> Después de **cualquier cambio en `.env`** hay que correr `art config:clear` y volver a cachear,
 > si no, el cambio no se ve.
 
 ## 11. Verificación (smoke test)
@@ -141,7 +152,7 @@ Luego **elimina la invitación de prueba** desde el panel.
 ## 12. Elegir el diseño definitivo
 
 Compara ambos con un link real agregando `?tema=clasico` o `?tema=botanico`. Para fijar uno para todos:
-`WEDDING_THEME=botanico` en el `.env` → `php artisan config:clear && php artisan config:cache`.
+`WEDDING_THEME=botanico` en el `.env` → `art config:clear && art config:cache`.
 
 ## 13. Cargar a los invitados
 
@@ -156,8 +167,8 @@ de cada tarjeta. Ver el [manual de uso](manual-de-uso.md).
 $ cd ~/domains/miguelydaniela.site/invitacion/app
 $ git pull
 $ composer install --no-dev --optimize-autoloader --no-interaction
-$ php artisan migrate --force
-$ php artisan config:cache && php artisan route:cache && php artisan view:cache
+$ art migrate --force
+$ art config:cache && art route:cache && art view:cache
 ```
 
 ## Respaldos (importante: es un dato que no se puede recrear)
@@ -171,13 +182,15 @@ $ php artisan config:cache && php artisan route:cache && php artisan view:cache
 
 | Síntoma | Causa probable | Qué hacer |
 |---|---|---|
-| Error 500 en todo | Permisos, `.env` mal o PHP < 8.4 | `tail -50 storage/logs/laravel.log`; revisar paso 6 y `php -v` |
-| “No application encryption key” | Falta `APP_KEY` | `php artisan key:generate --force` y recachear |
+| Error 500 en todo y **no existe** `storage/logs/laravel.log` | La **web** usa PHP < 8.4 (la app ni arranca) | hPanel → Configuración de PHP del dominio → 8.4. Comprobar con un `v.php` temporal que imprima `PHP_VERSION` y **borrarlo después** |
+| Error 500 en todo, con log | Permisos o `.env` mal | `tail -50 storage/logs/laravel.log`; revisar paso 6 |
+| `Process class relies on proc_open` al instalar o usar `artisan` | CLI con funciones bloqueadas | Usar `php -d disable_functions= artisan ...` (paso 4) |
+| “No application encryption key” | Falta `APP_KEY` | `art key:generate --force` y recachear |
 | Error de conexión a la base | Datos o host incorrectos | Revisar `DB_*`; probar `DB_HOST=localhost` en vez de `127.0.0.1` (o al revés) |
 | 404 en todas las rutas menos `/` | `.htaccess` no se lee / enlace roto | Confirmar `ls -la public_html/` (paso 8) |
 | Estilos/imágenes no cargan | La raíz no es `public/` | Repetir paso 8 |
-| Cambié el `.env` y no pasa nada | Config cacheada | `php artisan config:clear` y cachear de nuevo |
-| Olvidé la clave del panel | — | `php artisan admin:password` |
+| Cambié el `.env` y no pasa nada | Config cacheada | `art config:clear` y cachear de nuevo |
+| Olvidé la clave del panel | — | `art admin:password` |
 | Muchos intentos de login | Límite de 5 por minuto (a propósito) | Esperar 1 minuto |
 
 ## Seguridad: resumen de lo que ya está resuelto

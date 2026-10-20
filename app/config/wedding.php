@@ -18,7 +18,7 @@ return [
     ],
 
     // Mensaje de WhatsApp para enviar cada invitación. Variables: {nombre} y {link}.
-    'whatsapp_message' => env('WEDDING_WHATSAPP_MESSAGE', 'Hola {nombre}, tenemos algo especial para ti 💌 {link}'),
+    'whatsapp_message' => env('WEDDING_WHATSAPP_MESSAGE', 'Hola {nombre}, tenemos algo muy especial para ti: nuestra invitación de boda. Ábrela aquí: {link}'),
 
     // Tema visual de la invitación: 'clasico' (nacarado y dorado) o 'botanico' (papel verde).
     'themes' => ['clasico', 'botanico'],

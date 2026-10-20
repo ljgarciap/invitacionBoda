@@ -8,9 +8,18 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <title>Miguel Ángel & Daniela · Nuestra Boda</title>
   <meta name="description" content="Acompáñanos a celebrar nuestra boda el 19 de diciembre de 2026.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Miguel Ángel & Daniela">
+  <meta property="og:locale" content="es_CO">
+  <meta property="og:url" content="{{ url()->current() }}">
   <meta property="og:title" content="Miguel Ángel & Daniela · Nuestra Boda">
-  <meta property="og:description" content="Tienes una invitación. Ábrela.">
-  <meta property="og:image" content="{{ $a('img/portada.webp') }}">
+  <meta property="og:description" content="Tienes una invitación especial. 19 de diciembre de 2026 · Bucaramanga. Ábrela y confirma tu asistencia.">
+  <meta property="og:image" content="{{ $a('img/og.jpg') }}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Miguel Ángel y Daniela con su perrita Mia frente a una cascada: Nuestra Boda">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&family=Allura&display=swap" rel="stylesheet">
