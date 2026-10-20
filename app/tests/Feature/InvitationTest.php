@@ -43,6 +43,16 @@ class InvitationTest extends TestCase
             ->assertDontSee('<script>alert', false);
     }
 
+    public function test_los_archivos_estaticos_llevan_version_para_romper_la_cache_del_navegador(): void
+    {
+        $guest = Guest::factory()->create();
+        $version = filemtime(public_path('invitacion/css/styles.css'));
+
+        $this->get("/i/{$guest->code}")
+            ->assertSee('invitacion/css/styles.css?v='.$version, false)
+            ->assertSee('invitacion/js/app.js?v=', false);
+    }
+
     public function test_el_mapa_apunta_al_lugar_exacto_y_no_a_una_busqueda_por_direccion(): void
     {
         $guest = Guest::factory()->create();

@@ -1,4 +1,5 @@
-@php($a = fn (string $p) => asset('invitacion/'.$p))
+{{-- $a() agrega ?v=<fecha del archivo>: el hosting guarda CSS/JS/imágenes 7 días y así el navegador los baja de nuevo solo si cambiaron. --}}
+@php($a = fn (string $p) => asset('invitacion/'.$p).'?v='.(@filemtime(public_path('invitacion/'.$p)) ?: 0))
 <!doctype html>
 <html lang="es">
 <head>
@@ -14,7 +15,7 @@
   <meta property="og:url" content="{{ url()->current() }}">
   <meta property="og:title" content="Miguel Ángel & Daniela · Nuestra Boda">
   <meta property="og:description" content="Tienes una invitación especial. 19 de diciembre de 2026 · Bucaramanga. Ábrela y confirma tu asistencia.">
-  <meta property="og:image" content="{{ $a('img/og.jpg') }}">
+  <meta property="og:image" content="{{ asset('invitacion/img/og.jpg') }}">
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
