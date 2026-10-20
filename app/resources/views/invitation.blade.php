@@ -18,7 +18,7 @@
   <meta property="og:image:type" content="image/jpeg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
-  <meta property="og:image:alt" content="Miguel Ángel y Daniela con su perrita Mia frente a una cascada: Nuestra Boda">
+  <meta property="og:image:alt" content="Miguel Ángel y Daniela con su perrita Mia: Invitación Nuestra Boda">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -87,7 +87,7 @@
 
   <!-- ============ PORTADA ============ -->
   <header class="hero" id="inicio">
-    <img class="hero__img" src="{{ $a('img/portada.webp') }}" alt="Miguel Ángel y Daniela con su perrita Mia frente a una cascada. Nuestra boda: acompáñanos a celebrar." width="1600" height="1200" fetchpriority="high">
+    <img class="hero__img" src="{{ $a('img/tarjeta.webp') }}" alt="Miguel Ángel y Daniela con su perrita Mia. Invitación: nuestra boda." width="1600" height="900" fetchpriority="high">
     <div class="hero__text reveal">
       <p class="eyebrow">Nos casamos</p>
       <h1 class="script">Miguel Ángel <i>&amp;</i> Daniela</h1>
