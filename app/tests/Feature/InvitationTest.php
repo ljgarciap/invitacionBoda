@@ -50,7 +50,8 @@ class InvitationTest extends TestCase
         $this->get("/i/{$guest->code}")
             ->assertSee('Cl. 70 #33-376, Bucaramanga, Santander')
             ->assertSee('Cl%C3%A1sicos+Forever/@7.106601', false)
-            ->assertSee('maps?q=7.106601,-73.102264', false)
+            ->assertSee('maps?q=Cl%C3%A1sicos+Forever', false)
+            ->assertSee('&ll=7.106601,-73.102264&z=17&output=embed', false)
             ->assertSee('waze.com/ul?ll=7.106601,-73.102264', false);
     }
 

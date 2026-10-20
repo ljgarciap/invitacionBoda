@@ -185,7 +185,7 @@
       </div>
       <div class="map reveal">
         <iframe title="Mapa del lugar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q={{ config('wedding.venue.lat') }},{{ config('wedding.venue.lng') }}&z=17&output=embed"></iframe>
+          src="https://www.google.com/maps?q={{ urlencode(config('wedding.venue.name').', '.config('wedding.venue.address')) }}&ll={{ config('wedding.venue.lat') }},{{ config('wedding.venue.lng') }}&z=17&output=embed"></iframe>
       </div>
       <div class="dress reveal">
         <p class="eyebrow">Código de vestimenta</p>
