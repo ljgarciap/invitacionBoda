@@ -25,6 +25,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&family=Allura&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ $a('css/styles.css') }}">
   <link rel="stylesheet" href="{{ $a('css/tema-botanico.css') }}">
+  <link rel="stylesheet" href="{{ $a('css/tema-verde.css') }}">
 </head>
 <body class="locked" data-theme="{{ $theme }}">
 
@@ -97,7 +98,13 @@
 
   <!-- ============ CUENTA ATRÁS ============ -->
   <section class="section section--pearl" id="cuenta">
-    <div class="wrap center reveal">
+    <div class="wrap narrow center reveal">
+      <blockquote class="verse">
+        <p>“Sobre todas estas cosas vestíos de amor, que es el vínculo perfecto”.</p>
+        <cite>Colosenses 3:14</cite>
+        <svg class="heart heart--sm" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5C5 16 2.5 12.600 2.500 9.200 2.500 6.700 4.400 5 6.700 5c2.200 0 3.800 1.300 5.300 3.200C13.500 6.300 15.100 5 17.300 5c2.300 0 4.200 1.700 4.200 4.200 0 3.400-2.500 6.800-9.500 11.300z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+        <p class="verse__wish">Que Dios sea siempre el centro de nuestra historia.</p>
+      </blockquote>
       <p class="eyebrow">Faltan</p>
       <div class="countdown" id="countdown" aria-live="off">
         <div><b id="cd-d">--</b><span>días</span></div>
@@ -106,6 +113,10 @@
         <div><b id="cd-s">--</b><span>seg</span></div>
       </div>
       <p class="muted" id="cd-note">para el gran día</p>
+      <div class="envelopes-note">
+        <p class="eyebrow">Lluvia de sobres</p>
+        <p>Tu presencia es nuestro mejor regalo. Si deseas obsequiarnos algo, tendremos una lluvia de sobres.</p>
+      </div>
     </div>
   </section>
 
@@ -136,19 +147,19 @@
       <div class="center reveal">
         <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5C5 16 2.5 12.600 2.500 9.200 2.500 6.700 4.400 5 6.700 5c2.200 0 3.800 1.300 5.300 3.200C13.500 6.300 15.100 5 17.300 5c2.300 0 4.200 1.700 4.200 4.200 0 3.400-2.500 6.800-9.500 11.300z" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
         <h2 class="script h2">Nuestro gran día</h2>
-        <p class="muted">Itinerario de nuestra boda</p>
+        <p class="muted">El comienzo de nuestro para siempre</p>
       </div>
       <ol class="timeline">
-        <li class="reveal"><time>4:00 PM</time><span>Ceremonia religiosa</span></li>
-        <li class="reveal"><time>6:30 PM</time><span>Recepción</span></li>
-        <li class="reveal"><time>7:00 PM</time><span>Entrada de los novios</span></li>
-        <li class="reveal"><time>7:30 PM</time><span>Nuestro primer baile</span></li>
-        <li class="reveal"><time>8:00 PM</time><span>Momento especial</span></li>
-        <li class="reveal"><time>8:15 PM</time><span>Cena</span></li>
-        <li class="reveal"><time>9:30 PM</time><span>¡A bailar!</span></li>
+        <li class="reveal"><time>4:00 PM</time><span>Ceremonia</span></li>
+        <li class="reveal"><time>6:30 PM</time><span>Bienvenida &amp; cóctel</span></li>
+        <li class="reveal"><time>7:10 PM</time><span>Entrada de los novios</span></li>
+        <li class="reveal"><time>7:20 PM</time><span>Nuestro primer baile</span></li>
+        <li class="reveal"><time>8:15 PM</time><span>Momentos especiales</span></li>
+        <li class="reveal"><time>9:30 PM</time><span>Cena</span></li>
         <li class="reveal"><time>11:00 PM</time><span>Hora loca</span></li>
-        <li class="reveal"><time>1:00 AM</time><span>Fin de la celebración</span></li>
+        <li class="reveal"><time>1:00 AM</time><span>Fin de nuestra celebración</span></li>
       </ol>
+      <p class="center timeline__close reveal">¡Prepárate para una noche llena de amor, sorpresas y mucha fiesta!</p>
     </div>
   </section>
 
@@ -161,20 +172,20 @@
         <h2 class="script h2">Clásicos Forever</h2>
         <p class="venue">Salón Puente</p>
         <address>
-          <a href="https://www.google.com/maps/search/?api=1&query=Cl.+70+%2333-376%2C+Bucaramanga%2C+Colombia" target="_blank" rel="noopener">
-            Cl. 70 #33-376, Bucaramanga
+          <a href="{{ config('wedding.venue.maps_url') }}" target="_blank" rel="noopener">
+            {{ config('wedding.venue.address') }}
           </a>
           <small>300 metros por la Vía a Las Colinas</small>
         </address>
         <div class="actions">
-          <a class="btn btn--gold" href="https://www.google.com/maps/search/?api=1&query=Cl.+70+%2333-376%2C+Bucaramanga%2C+Colombia" target="_blank" rel="noopener">Abrir en Google Maps</a>
-          <a class="btn btn--ghost" href="https://waze.com/ul?q=Cl.%2070%20%2333-376%20Bucaramanga&navigate=yes" target="_blank" rel="noopener">Abrir en Waze</a>
+          <a class="btn btn--gold" href="{{ config('wedding.venue.maps_url') }}" target="_blank" rel="noopener">Abrir en Google Maps</a>
+          <a class="btn btn--ghost" href="https://waze.com/ul?ll={{ config('wedding.venue.lat') }},{{ config('wedding.venue.lng') }}&navigate=yes" target="_blank" rel="noopener">Abrir en Waze</a>
           <button class="btn btn--ghost" id="calBtn" type="button">Añadir al calendario</button>
         </div>
       </div>
       <div class="map reveal">
         <iframe title="Mapa del lugar" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Cl.+70+%2333-376,+Bucaramanga,+Colombia&output=embed"></iframe>
+          src="https://www.google.com/maps?q={{ config('wedding.venue.lat') }},{{ config('wedding.venue.lng') }}&z=17&output=embed"></iframe>
       </div>
       <div class="dress reveal">
         <p class="eyebrow">Código de vestimenta</p>
