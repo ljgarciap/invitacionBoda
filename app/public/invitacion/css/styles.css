@@ -103,6 +103,14 @@ a { color: inherit; }
 .countdown b { display: block; font-family: var(--serif); font-weight: 600; font-size: clamp(1.9rem, 9vw, 3rem); line-height: 1; color: var(--gold-dk); font-variant-numeric: tabular-nums; }
 .countdown span { font-size: .68rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted); }
 
+.verse { margin: 0 auto 2.6rem; }
+.verse p { font-family: var(--serif); font-style: italic; font-size: clamp(1.3rem, 4.6vw, 1.7rem); line-height: 1.4; margin: 0 0 .5rem; }
+.verse cite { display: block; font-style: normal; font-size: .75rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); }
+.verse .heart--sm { width: 20px; height: 20px; margin: 14px auto 10px; }
+.verse .verse__wish { font-size: 1.15rem; color: var(--muted); margin: 0; }
+.envelopes-note { margin: 2.2rem auto 0; padding-top: 1.6rem; border-top: 1px solid var(--line); max-width: 420px; }
+.envelopes-note p:last-child { font-family: var(--serif); font-size: 1.2rem; margin: 0; }
+
 /* ---------- Historia ---------- */
 .story { display: grid; gap: 28px; margin-top: 40px; }
 .story__item { margin: 0; background: #fff; padding: 10px 10px 14px; border-radius: 6px; box-shadow: 0 14px 34px rgba(80,60,30,.16); }
@@ -121,6 +129,7 @@ a { color: inherit; }
 .timeline time { font-weight: 500; color: var(--gold-dk); font-size: .95rem; padding-right: 16px; text-align: right; border-right: 2px solid var(--line); }
 .timeline span { padding-left: 18px; font-size: 1.05rem; }
 .timeline li:first-child span, .timeline li:nth-child(2) span { font-weight: 500; }
+.timeline__close { font-family: var(--serif); font-style: italic; font-size: 1.3rem; margin: 1.8rem 0 0; }
 
 /* ---------- Lugar ---------- */
 .venue { font-family: var(--serif); font-size: 1.5rem; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 1rem; }

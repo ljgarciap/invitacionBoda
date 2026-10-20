@@ -25,11 +25,12 @@ class InvitationTest extends TestCase
         $this->assertNotNull($guest->fresh()->first_opened_at);
     }
 
-    public function test_el_tema_por_defecto_es_clasico_y_se_puede_previsualizar_el_botanico(): void
+    public function test_el_tema_por_defecto_es_verde_y_se_pueden_previsualizar_los_otros(): void
     {
         $guest = Guest::factory()->create();
 
-        $this->get("/i/{$guest->code}")->assertSee('data-theme="clasico"', false);
+        $this->get("/i/{$guest->code}")->assertSee('data-theme="verde"', false);
+        $this->get("/i/{$guest->code}?tema=clasico")->assertSee('data-theme="clasico"', false);
         $this->get("/i/{$guest->code}?tema=botanico")->assertSee('data-theme="botanico"', false);
     }
 
@@ -38,8 +39,30 @@ class InvitationTest extends TestCase
         $guest = Guest::factory()->create();
 
         $this->get("/i/{$guest->code}?tema=<script>")
-            ->assertSee('data-theme="clasico"', false)
+            ->assertSee('data-theme="verde"', false)
             ->assertDontSee('<script>alert', false);
+    }
+
+    public function test_el_mapa_apunta_al_lugar_exacto_y_no_a_una_busqueda_por_direccion(): void
+    {
+        $guest = Guest::factory()->create();
+
+        $this->get("/i/{$guest->code}")
+            ->assertSee('Cl. 70 #33-376, Bucaramanga, Santander')
+            ->assertSee('Cl%C3%A1sicos+Forever/@7.106601', false)
+            ->assertSee('maps?q=7.106601,-73.102264', false)
+            ->assertSee('waze.com/ul?ll=7.106601,-73.102264', false);
+    }
+
+    public function test_muestra_el_itinerario_actualizado_el_versiculo_y_la_lluvia_de_sobres(): void
+    {
+        $guest = Guest::factory()->create();
+
+        $this->get("/i/{$guest->code}")
+            ->assertSeeInOrder(['4:00 PM', 'Ceremonia', '6:30 PM', 'Bienvenida &amp; cóctel', '7:10 PM', '7:20 PM', '8:15 PM', 'Momentos especiales', '9:30 PM', 'Cena', '11:00 PM', 'Hora loca', '1:00 AM', 'Fin de nuestra celebración'], false)
+            ->assertSee('Colosenses 3:14')
+            ->assertSee('Que Dios sea siempre el centro de nuestra historia.')
+            ->assertSee('Lluvia de sobres');
     }
 
     public function test_incluye_la_vista_previa_para_whatsapp(): void

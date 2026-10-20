@@ -1,0 +1,77 @@
+/* Tema "verde": la estructura y la animación del tema clásico (sobre con sello dorado, portada,
+   secciones nacaradas) con los colores del papel verde del botánico. Se activa con
+   <body data-theme="verde">; no cambia nada de los otros dos temas. */
+
+[data-theme="verde"] {
+  --green: #5d7a53;
+  --green-dk: #3f5a3a;
+  --green-lt: #7b9670;
+  --cream-txt: #f6f1e4;
+  --gold-lt: #e3c98f;
+
+  --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  --green-paper:
+    var(--noise),
+    linear-gradient(115deg, transparent 40%, rgba(255,255,255,.07) 41%, transparent 43%),
+    linear-gradient(62deg, transparent 55%, rgba(0,0,0,.08) 56%, transparent 58%),
+    linear-gradient(170deg, #668359, #587550 55%, #4f6b47);
+
+  background: var(--green-paper);
+  color: var(--cream-txt);
+}
+
+/* ---------- Secciones: verdes, con las nacaradas del clásico intercaladas ---------- */
+[data-theme="verde"] .section { background: var(--green-paper); color: var(--cream-txt); }
+[data-theme="verde"] .section--pearl {
+  background: linear-gradient(rgba(251,246,240,.88), rgba(251,246,240,.88)), url("../img/fondo.webp") center / cover;
+  color: var(--ink);
+}
+[data-theme="verde"] .muted { color: rgba(246,241,228,.72); }
+[data-theme="verde"] .section--pearl .muted { color: var(--muted); }
+[data-theme="verde"] .script { color: var(--cream-txt); }
+[data-theme="verde"] .section--pearl .script,
+[data-theme="verde"] .card .script { color: var(--green-dk); }
+[data-theme="verde"] .eyebrow { color: var(--gold-lt); }
+[data-theme="verde"] .section--pearl .eyebrow { color: var(--gold); }
+[data-theme="verde"] .serif-lg,
+[data-theme="verde"] .venue { color: var(--cream-txt); }
+[data-theme="verde"] address a { border-color: var(--gold-lt); }
+[data-theme="verde"] address small { color: rgba(246,241,228,.7); }
+[data-theme="verde"] .map { border-color: rgba(255,255,255,.25); }
+[data-theme="verde"] .heart { color: var(--gold); }
+
+/* ---------- Botones ---------- */
+[data-theme="verde"] .btn--ghost { background: rgba(246,241,228,.12); color: var(--cream-txt); border-color: var(--gold-lt); }
+[data-theme="verde"] .btn--ghost:hover { background: rgba(246,241,228,.24); }
+[data-theme="verde"] .section--pearl .btn--ghost { background: rgba(255,255,255,.6); color: var(--green-dk); border-color: var(--green-dk); }
+
+/* ---------- Sobre (misma animación del clásico; la tarjeta que sale es la imagen nueva) ---------- */
+[data-theme="verde"] .envelope__bg { background: var(--green-paper); }
+[data-theme="verde"] .envelope__pre { color: rgba(246,241,228,.85); }
+[data-theme="verde"] .envelope__guest { color: var(--cream-txt); text-shadow: 0 2px 10px rgba(0,0,0,.25); }
+[data-theme="verde"] .envelope__hint { color: var(--gold-lt); }
+[data-theme="verde"] .envelope__box { filter: drop-shadow(0 18px 22px rgba(0,0,0,.4)); }
+[data-theme="verde"] .envelope__card { background: url("../img/tarjeta.jpg") center / cover; box-shadow: 0 0 0 3px #fbfaf6; }
+[data-theme="verde"] .envelope__card span { display: none; }
+
+/* ---------- Portada ---------- */
+[data-theme="verde"] .hero__text { background: var(--green-paper); }
+[data-theme="verde"] .hero__text .script i { color: var(--gold-lt); }
+[data-theme="verde"] .hero__date { color: var(--cream-txt); }
+
+/* ---------- Cuenta atrás, versículo, sobres, itinerario ---------- */
+[data-theme="verde"] .countdown b { color: var(--green-dk); }
+[data-theme="verde"] .verse cite { color: var(--gold); }
+[data-theme="verde"] .envelopes-note { border-color: var(--line); }
+[data-theme="verde"] .timeline time { color: var(--green-dk); }
+[data-theme="verde"] .seats b { color: var(--green-dk); }
+[data-theme="verde"] .stepper button,
+[data-theme="verde"] .stepper output { color: var(--green-dk); }
+[data-theme="verde"] .stepper button { border-color: var(--green-dk); }
+[data-theme="verde"] input[type=text]:focus,
+[data-theme="verde"] textarea:focus { outline-color: var(--green-lt); border-color: var(--green-dk); }
+[data-theme="verde"] .music { color: var(--green-dk); border-color: var(--gold); }
+
+/* ---------- Pie ---------- */
+[data-theme="verde"] .footer { background: var(--green-paper); color: var(--cream-txt); }
+[data-theme="verde"] .footer .script { color: var(--cream-txt); }
