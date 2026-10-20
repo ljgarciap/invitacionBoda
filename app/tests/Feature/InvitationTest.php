@@ -24,6 +24,23 @@ class InvitationTest extends TestCase
         $this->assertNotNull($guest->fresh()->first_opened_at);
     }
 
+    public function test_el_tema_por_defecto_es_clasico_y_se_puede_previsualizar_el_botanico(): void
+    {
+        $guest = Guest::factory()->create();
+
+        $this->get("/i/{$guest->code}")->assertSee('data-theme="clasico"', false);
+        $this->get("/i/{$guest->code}?tema=botanico")->assertSee('data-theme="botanico"', false);
+    }
+
+    public function test_un_tema_desconocido_cae_al_por_defecto(): void
+    {
+        $guest = Guest::factory()->create();
+
+        $this->get("/i/{$guest->code}?tema=<script>")
+            ->assertSee('data-theme="clasico"', false)
+            ->assertDontSee('<script>alert', false);
+    }
+
     public function test_un_cupo_se_escribe_en_singular(): void
     {
         $guest = Guest::factory()->create(['seats' => 1]);

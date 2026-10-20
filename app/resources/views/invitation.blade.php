@@ -13,14 +13,46 @@
   <meta property="og:image" content="{{ $a('img/portada.webp') }}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&family=Pinyon+Script&family=Allura&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ $a('css/styles.css') }}">
+  <link rel="stylesheet" href="{{ $a('css/tema-botanico.css') }}">
 </head>
-<body class="locked">
+<body class="locked" data-theme="{{ $theme }}">
+
+
+<!-- Ramas de flores secas (solo se ven en el tema botánico) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="sprig" viewBox="0 0 200 260">
+    <g fill="none" stroke="#8a7a45" stroke-width="3" stroke-linecap="round">
+      <path d="M16 6C38 70 92 132 152 252"/>
+      <path d="M44 56C70 48 98 58 120 86"/>
+      <path d="M70 100C96 92 124 104 142 134"/>
+      <path d="M30 28C14 40 8 62 12 84"/>
+    </g>
+    <g fill="#a99b5c" opacity=".9">
+      <ellipse cx="60" cy="40" rx="22" ry="7" transform="rotate(-28 60 40)"/>
+      <ellipse cx="96" cy="150" rx="22" ry="7" transform="rotate(38 96 150)"/>
+      <ellipse cx="118" cy="196" rx="20" ry="6" transform="rotate(52 118 196)"/>
+      <ellipse cx="22" cy="104" rx="18" ry="6" transform="rotate(80 22 104)"/>
+    </g>
+    <g fill="#f7ecd2">
+      <circle cx="120" cy="86" r="9"/><circle cx="132" cy="76" r="7"/><circle cx="110" cy="74" r="7"/><circle cx="128" cy="96" r="7"/>
+      <circle cx="142" cy="134" r="9"/><circle cx="154" cy="124" r="7"/><circle cx="132" cy="124" r="7"/><circle cx="150" cy="146" r="7"/>
+      <circle cx="12" cy="86" r="8"/><circle cx="22" cy="76" r="6"/><circle cx="6" cy="76" r="6"/>
+      <circle cx="84" cy="52" r="7"/><circle cx="96" cy="60" r="6"/><circle cx="100" cy="112" r="7"/><circle cx="112" cy="104" r="6"/>
+    </g>
+    <g fill="#d9b564">
+      <circle cx="120" cy="86" r="2.6"/><circle cx="142" cy="134" r="2.6"/><circle cx="12" cy="86" r="2.4"/><circle cx="84" cy="52" r="2.2"/><circle cx="100" cy="112" r="2.2"/>
+    </g>
+  </symbol>
+</svg>
 
 <!-- ============ SOBRE ============ -->
 <div id="envelope" class="envelope" role="dialog" aria-label="Invitación cerrada">
   <div class="envelope__bg"></div>
+  <svg class="deco deco--tl" aria-hidden="true"><use href="#sprig"/></svg>
+  <svg class="deco deco--br" aria-hidden="true"><use href="#sprig"/></svg>
+  <div class="torn" aria-hidden="true"></div>
   <div class="envelope__stage">
     <p class="envelope__pre">Una invitación especial para</p>
     <h2 class="envelope__guest" id="guestName">{{ $guest->name }}</h2>
@@ -70,6 +102,7 @@
 
   <!-- ============ HISTORIA ============ -->
   <section class="section" id="historia">
+    <svg class="deco deco--tl" aria-hidden="true"><use href="#sprig"/></svg>
     <div class="wrap">
       <div class="center reveal">
         <p class="eyebrow">Nuestra historia</p>
@@ -112,6 +145,7 @@
 
   <!-- ============ LUGAR ============ -->
   <section class="section" id="lugar">
+    <svg class="deco deco--tr" aria-hidden="true"><use href="#sprig"/></svg>
     <div class="wrap narrow center">
       <div class="reveal">
         <p class="eyebrow">Dónde</p>
@@ -212,6 +246,7 @@
   <footer class="footer center">
     <p class="script">¡Gracias por ser parte de nuestra historia!</p>
     <p class="muted">Miguel Ángel &amp; Daniela · 19.12.2026</p>
+    <div class="torn" aria-hidden="true"></div>
   </footer>
 </main>
 

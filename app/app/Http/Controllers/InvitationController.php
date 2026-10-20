@@ -12,9 +12,13 @@ use Illuminate\Support\Carbon;
 
 class InvitationController extends Controller
 {
-    public function show(Guest $guest): Response
+    public function show(Request $request, Guest $guest): Response
     {
         $guest->markOpened();
+
+        // ?tema=... solo sirve para comparar versiones; el definitivo sale de WEDDING_THEME.
+        $themes = config('wedding.themes');
+        $theme = in_array($request->query('tema'), $themes, true) ? $request->query('tema') : config('wedding.theme');
 
         $tz = config('app.timezone');
         $starts = Carbon::parse(config('wedding.starts_at'), $tz);
@@ -35,7 +39,7 @@ class InvitationController extends Controller
         ];
 
         return response()
-            ->view('invitation', ['guest' => $guest, 'state' => $state])
+            ->view('invitation', ['guest' => $guest, 'state' => $state, 'theme' => $theme])
             ->header('X-Robots-Tag', 'noindex, nofollow');
     }
 

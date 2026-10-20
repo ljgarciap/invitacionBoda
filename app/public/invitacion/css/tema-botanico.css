@@ -1,0 +1,118 @@
+/* Tema "botánico": papel verde, flores secas, sobre blanco con sello de lacre.
+   Se activa con <body data-theme="botanico">; el tema clásico no usa este archivo. */
+
+[data-theme="botanico"] {
+  --green: #5d7a53;
+  --green-dk: #3f5a3a;
+  --green-lt: #7b9670;
+  --paper: #efe8d6;
+  --cream-txt: #f6f1e4;
+  --kraft: #b07a2f;
+  --kraft-lt: #d2a95e;
+  --wax: #7a2230;
+  --ink: #3b3a2e;
+  --muted: #8a7f68;
+  --line: #d9cfb6;
+  --gold: #b07a2f;
+  --gold-dk: #8a5a1c;
+  --gold-lt: #d2a95e;
+  --script: "Allura", "Pinyon Script", cursive;
+
+  --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 .45 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  --noise-soft: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='300' height='300'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 .35  0 0 0 0 .3  0 0 0 0 .2  0 0 0 .13 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  --green-paper:
+    var(--noise),
+    linear-gradient(115deg, transparent 40%, rgba(255,255,255,.07) 41%, transparent 43%),
+    linear-gradient(62deg, transparent 55%, rgba(0,0,0,.08) 56%, transparent 58%),
+    linear-gradient(170deg, #668359, #587550 55%, #4f6b47);
+  --cream-paper:
+    var(--noise-soft),
+    linear-gradient(180deg, #f3ecdb, #ebe3cf);
+
+  background: var(--green-paper);
+  color: var(--cream-txt);
+}
+
+/* ---------- Secciones ---------- */
+[data-theme="botanico"] .section { background: var(--green-paper); color: var(--cream-txt); position: relative; overflow: hidden; }
+[data-theme="botanico"] .section--pearl { background: var(--cream-paper); color: var(--ink); }
+[data-theme="botanico"] .muted { color: rgba(246,241,228,.72); }
+[data-theme="botanico"] .section--pearl .muted { color: var(--muted); }
+[data-theme="botanico"] .script { color: var(--cream-txt); letter-spacing: .01em; }
+[data-theme="botanico"] .section--pearl .script,
+[data-theme="botanico"] .card .script { color: var(--green-dk); }
+[data-theme="botanico"] .eyebrow { color: var(--kraft-lt); font-weight: 500; }
+[data-theme="botanico"] .section--pearl .eyebrow { color: var(--kraft); }
+[data-theme="botanico"] .serif-lg { color: var(--cream-txt); }
+[data-theme="botanico"] .venue { color: var(--cream-txt); }
+[data-theme="botanico"] address a { border-color: var(--kraft-lt); }
+[data-theme="botanico"] address small { color: rgba(246,241,228,.7); }
+[data-theme="botanico"] .map { border-color: rgba(255,255,255,.25); }
+
+/* ---------- Botones ---------- */
+[data-theme="botanico"] .btn { border-color: var(--kraft-lt); }
+[data-theme="botanico"] .btn--gold { background: linear-gradient(135deg, #cf9a4a, var(--kraft) 55%, var(--gold-dk)); color: #fff; box-shadow: 0 6px 18px rgba(0,0,0,.28); }
+[data-theme="botanico"] .btn--ghost { background: rgba(246,241,228,.12); color: var(--cream-txt); }
+[data-theme="botanico"] .btn--ghost:hover { background: rgba(246,241,228,.24); }
+[data-theme="botanico"] .section--pearl .btn--ghost { background: rgba(255,255,255,.6); color: var(--green-dk); border-color: var(--green-dk); }
+[data-theme="botanico"] .btn--link { color: var(--muted); }
+
+/* ---------- Sobre ---------- */
+[data-theme="botanico"] .envelope__bg { background: var(--green-paper); }
+[data-theme="botanico"] .envelope__pre { color: rgba(246,241,228,.85); }
+[data-theme="botanico"] .envelope__guest { color: var(--cream-txt); text-shadow: 0 2px 10px rgba(0,0,0,.25); }
+[data-theme="botanico"] .envelope__hint { color: var(--kraft-lt); }
+[data-theme="botanico"] .envelope__box { filter: drop-shadow(0 18px 22px rgba(0,0,0,.4)); }
+[data-theme="botanico"] .envelope__back { background: #ece9e1; }
+[data-theme="botanico"] .envelope__front { background: var(--noise-soft), linear-gradient(115deg, #fdfcf9, #f1efe8); }
+[data-theme="botanico"] .envelope__flap { background: var(--noise-soft), linear-gradient(#faf9f5, #eceae2); }
+[data-theme="botanico"] .envelope__card { background: url("../img/barichara.webp") center 36% / cover; box-shadow: 0 0 0 4px #fbfaf6; border-radius: 2px; }
+[data-theme="botanico"] .envelope__card span { display: none; }
+[data-theme="botanico"] .envelope__seal { background: radial-gradient(circle at 35% 30%, #b13a4a, var(--wax) 55%, #4d121c); color: #f3c9ce; font-size: 1.05rem; box-shadow: 0 4px 10px rgba(0,0,0,.4), inset 0 0 0 3px rgba(255,255,255,.12), inset 0 -3px 6px rgba(0,0,0,.3); }
+
+/* ---------- Portada ---------- */
+[data-theme="botanico"] .hero__text { background: var(--green-paper); }
+[data-theme="botanico"] .hero__text .script i { color: var(--kraft-lt); }
+[data-theme="botanico"] .hero__date { color: var(--cream-txt); letter-spacing: .06em; }
+
+/* ---------- Cuenta atrás ---------- */
+[data-theme="botanico"] .countdown div { background: rgba(255,255,255,.7); border-color: var(--line); box-shadow: 0 8px 20px rgba(60,50,20,.14); }
+[data-theme="botanico"] .countdown b { color: var(--green-dk); }
+
+/* ---------- Historia / itinerario / RSVP ---------- */
+[data-theme="botanico"] .story__item { background: #fbfaf6; }
+[data-theme="botanico"] .story__item figcaption { color: var(--muted); }
+[data-theme="botanico"] .heart { color: var(--kraft); }
+[data-theme="botanico"] .timeline { border-color: var(--line); }
+[data-theme="botanico"] .timeline time { color: var(--kraft); border-color: var(--line); }
+[data-theme="botanico"] .seats { color: var(--ink); }
+[data-theme="botanico"] .seats b { color: var(--wax); }
+[data-theme="botanico"] .card { background: rgba(255,255,255,.82); color: var(--ink); border-color: var(--line); }
+[data-theme="botanico"] .stepper button { border-color: var(--green-dk); color: var(--green-dk); }
+[data-theme="botanico"] .stepper output { color: var(--green-dk); }
+[data-theme="botanico"] input[type=text]:focus, [data-theme="botanico"] textarea:focus { outline-color: var(--green-lt); border-color: var(--green-dk); }
+[data-theme="botanico"] .hearts i { color: var(--wax); }
+[data-theme="botanico"] .music { background: rgba(246,241,228,.92); border-color: var(--kraft); color: var(--green-dk); }
+
+/* ---------- Pie con papel kraft rasgado ---------- */
+[data-theme="botanico"] .footer { background: var(--green-paper); color: var(--cream-txt); padding-bottom: 0; position: relative; }
+[data-theme="botanico"] .footer .script { color: var(--cream-txt); }
+.torn { display: none; }
+[data-theme="botanico"] .torn {
+  display: block; height: 120px; margin-top: 46px;
+  background: var(--noise), linear-gradient(180deg, #b78a3c, #9a6a22);
+  background-blend-mode: multiply, normal;
+  clip-path: polygon(0.0% 30.0%, 3.0% 36.5%, 6.0% 25.7%, 8.0% 18.8%, 11.0% 30.4%, 13.0% 16.4%, 15.5% 17.7%, 17.0% 29.5%, 20.0% 39.1%, 22.0% 30.2%, 23.5% 15.5%, 25.5% 36.9%, 27.0% 34.2%, 29.5% 25.5%, 31.5% 27.5%, 34.0% 27.0%, 35.5% 25.9%, 38.0% 24.6%, 39.5% 32.4%, 42.0% 33.7%, 44.5% 14.8%, 46.0% 24.4%, 48.5% 24.0%, 50.0% 36.0%, 51.5% 19.6%, 53.0% 26.2%, 56.0% 24.9%, 58.0% 34.2%, 60.5% 22.8%, 63.0% 22.6%, 66.0% 33.7%, 67.5% 17.5%, 69.0% 14.3%, 72.0% 34.7%, 74.0% 31.7%, 76.0% 25.6%, 78.0% 39.6%, 80.0% 24.9%, 83.0% 17.0%, 86.0% 39.7%, 87.5% 21.0%, 90.0% 39.9%, 91.5% 19.5%, 94.5% 39.9%, 96.0% 15.1%, 98.0% 19.5%, 100% 30%, 100% 100%, 0 100%);
+}
+
+/* ---------- Flores secas decorativas ---------- */
+.deco { display: none; }
+[data-theme="botanico"] .deco { display: block; position: absolute; pointer-events: none; width: clamp(110px, 30vw, 200px); height: auto; opacity: .95; filter: drop-shadow(1px 3px 3px rgba(0,0,0,.25)); }
+[data-theme="botanico"] .deco--tl { top: -6px; left: -10px; }
+[data-theme="botanico"] .deco--br { bottom: 30px; right: -14px; transform: scaleX(-1) rotate(160deg); }
+[data-theme="botanico"] .deco--tr { top: -6px; right: -10px; transform: scaleX(-1); }
+[data-theme="botanico"] .envelope .deco { position: absolute; }
+[data-theme="botanico"] .envelope .deco--br { bottom: -6px; right: -10px; }
+[data-theme="botanico"] .envelope .torn { position: absolute; left: 0; right: 0; bottom: 0; margin: 0; height: 90px; }
+[data-theme="botanico"] .footer .deco--tl { top: 6px; }
+[data-theme="botanico"] .footer .torn { margin-inline: -16px; }

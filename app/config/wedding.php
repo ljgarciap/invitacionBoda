@@ -17,6 +17,10 @@ return [
         'address' => env('WEDDING_VENUE_ADDRESS', 'Cl. 70 #33-376, Bucaramanga'),
     ],
 
+    // Tema visual de la invitación: 'clasico' (nacarado y dorado) o 'botanico' (papel verde).
+    'themes' => ['clasico', 'botanico'],
+    'theme' => env('WEDDING_THEME', 'clasico'),
+
     // Caracteres permitidos en el código de la URL (sin 0/o, 1/l/i para evitar confusiones).
     'code_alphabet' => 'abcdefghjkmnpqrstuvwxyz23456789',
     'code_length' => 8,
