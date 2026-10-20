@@ -1,0 +1,10 @@
+# Originales pesados (ya hay copias optimizadas en app/public/invitacion y prototipo/)
+WhatsApp Image*.jpeg
+*.mp3
+!prototipo/audio/cancion.mp3
+!app/public/invitacion/audio/cancion.mp3
+.DS_Store
+
+# Archivos de agente que genera el esqueleto de Laravel
+app/CLAUDE.md
+app/AGENTS.md
