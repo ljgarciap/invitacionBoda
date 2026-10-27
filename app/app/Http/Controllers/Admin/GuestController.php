@@ -99,7 +99,15 @@ class GuestController extends Controller
 
         while (($cols = fgetcsv($handle, 0, $delimiter)) !== false) {
             $line++;
-            $cols = array_map(fn ($c) => trim(preg_replace('/^\xEF\xBB\xBF/', '', (string) $c)), $cols);
+            // Excel en Windows guarda "CSV" en ANSI (Windows-1252): se pasa a UTF-8 para que MariaDB no rechace las tildes.
+            $cols = array_map(function ($c) {
+                $c = (string) $c;
+                if (! mb_check_encoding($c, 'UTF-8')) {
+                    $c = mb_convert_encoding($c, 'UTF-8', 'Windows-1252');
+                }
+
+                return trim(preg_replace('/^\xEF\xBB\xBF/', '', $c));
+            }, $cols);
 
             if ($cols === [''] || $cols === []) {
                 continue;

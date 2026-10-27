@@ -256,6 +256,17 @@ class AdminTest extends TestCase
         $this->assertSame('Ana Ruiz', Guest::orderBy('id')->first()->name);
     }
 
+    public function test_importa_csv_guardado_en_ansi_desde_excel(): void
+    {
+        $this->login();
+        $csv = mb_convert_encoding("Nombre;Cupos;Teléfono\nFamilia Muñoz Peña;2;300\n", 'Windows-1252', 'UTF-8');
+
+        $this->post('/admin/import', ['file' => UploadedFile::fake()->createWithContent('i.csv', $csv)])
+            ->assertRedirect('/admin');
+
+        $this->assertSame('Familia Muñoz Peña', Guest::first()->name);
+    }
+
     public function test_importa_las_filas_validas_y_reporta_las_invalidas(): void
     {
         $this->login();
