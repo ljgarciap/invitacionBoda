@@ -99,11 +99,14 @@ class GuestController extends Controller
 
         while (($cols = fgetcsv($handle, 0, $delimiter)) !== false) {
             $line++;
-            // Excel en Windows guarda "CSV" en ANSI (Windows-1252): se pasa a UTF-8 para que MariaDB no rechace las tildes.
+            // Excel guarda "CSV" en ANSI: Windows-1252 en Windows, MacRoman en Mac. Se pasa a UTF-8 para
+            // que MariaDB no rechace las tildes. Los bytes 0x80-0x9F son letras acentuadas en MacRoman
+            // (ó = 0x97) pero signos raros en Windows-1252, así que sirven para distinguirlos.
             $cols = array_map(function ($c) {
                 $c = (string) $c;
                 if (! mb_check_encoding($c, 'UTF-8')) {
-                    $c = mb_convert_encoding($c, 'UTF-8', 'Windows-1252');
+                    $mac = preg_match('/[\x80-\x9F]/', $c) ? @iconv('MACINTOSH', 'UTF-8', $c) : false;
+                    $c = $mac !== false ? $mac : mb_convert_encoding($c, 'UTF-8', 'Windows-1252');
                 }
 
                 return trim(preg_replace('/^\xEF\xBB\xBF/', '', $c));

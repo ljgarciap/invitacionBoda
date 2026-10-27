@@ -267,6 +267,17 @@ class AdminTest extends TestCase
         $this->assertSame('Familia Muñoz Peña', Guest::first()->name);
     }
 
+    public function test_importa_csv_guardado_en_macroman_desde_excel_de_mac(): void
+    {
+        $this->login();
+        $csv = iconv('UTF-8', 'MACINTOSH', "Maria Angelica Uribe López;1;3162737939\nFamilia Muñoz;2;300\n");
+
+        $this->post('/admin/import', ['file' => UploadedFile::fake()->createWithContent('i.csv', $csv)])
+            ->assertRedirect('/admin');
+
+        $this->assertSame(['Familia Muñoz', 'Maria Angelica Uribe López'], Guest::orderBy('name')->pluck('name')->all());
+    }
+
     public function test_importa_las_filas_validas_y_reporta_las_invalidas(): void
     {
         $this->login();
