@@ -59,7 +59,7 @@
       'DTEND:' + fmt(END),
       'SUMMARY:Boda de Miguel Ángel & Daniela',
       'LOCATION:' + INV.venue.replace(/,/g, '\\,'),
-      'DESCRIPTION:Ceremonia religiosa 4:00 PM · Recepción 6:30 PM',
+      'DESCRIPTION:Recepción 6:30 PM',
       'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Mañana es la boda', 'END:VALARM',
       'END:VEVENT', 'END:VCALENDAR',
     ].join('\r\n');

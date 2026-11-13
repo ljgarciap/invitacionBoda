@@ -7,7 +7,7 @@ return [
     */
     'couple' => env('WEDDING_COUPLE', 'Miguel Ángel & Daniela'),
 
-    'starts_at' => env('WEDDING_STARTS_AT', '2026-12-19 16:00:00'),
+    'starts_at' => env('WEDDING_STARTS_AT', '2026-12-19 18:30:00'),
 
     // Fecha límite para confirmar (se incluye todo ese día).
     'rsvp_deadline' => env('WEDDING_RSVP_DEADLINE', '2026-12-04 23:59:59'),

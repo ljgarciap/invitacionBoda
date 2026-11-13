@@ -70,7 +70,7 @@ class InvitationTest extends TestCase
         $guest = Guest::factory()->create();
 
         $this->get("/i/{$guest->code}")
-            ->assertSeeInOrder(['4:00 PM', 'Ceremonia', '6:30 PM', 'Bienvenida &amp; cóctel', '7:10 PM', '7:20 PM', '8:15 PM', 'Momentos especiales', '9:30 PM', 'Cena', '11:00 PM', 'Hora loca', '1:00 AM', 'Fin de nuestra celebración'], false)
+            ->assertSeeInOrder(['10:00 AM', 'Ceremonia', '6:30 PM', 'Bienvenida &amp; cóctel', '7:10 PM', '7:20 PM', '8:15 PM', 'Momentos especiales', '9:30 PM', 'Cena', '11:00 PM', 'Hora loca', '1:00 AM', 'Fin de nuestra celebración'], false)
             ->assertSee('Colosenses 3:14')
             ->assertSee('Que Dios sea siempre el centro de nuestra historia.')
             ->assertSee('Lluvia de sobres');

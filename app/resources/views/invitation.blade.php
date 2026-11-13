@@ -92,7 +92,7 @@
     <div class="hero__text reveal">
       <p class="eyebrow">Nos casamos</p>
       <h1 class="script">Miguel Ángel <i>&amp;</i> Daniela</h1>
-      <p class="hero__date">Sábado · 19 de diciembre de 2026 · 4:00 pm</p>
+      <p class="hero__date">Sábado · 19 de diciembre de 2026 · 6:30 pm</p>
       <a href="#rsvp" class="btn btn--gold">Confirmar asistencia</a>
     </div>
   </header>
@@ -152,7 +152,7 @@
         <p class="muted">El comienzo de nuestro para siempre</p>
       </div>
       <ol class="timeline">
-        <li class="reveal"><time>4:00 PM</time><span>Ceremonia</span></li>
+        <li class="reveal"><time>10:00 AM</time><span>Ceremonia</span></li>
         <li class="reveal"><time>6:30 PM</time><span>Bienvenida &amp; cóctel</span></li>
         <li class="reveal"><time>7:10 PM</time><span>Entrada de los novios</span></li>
         <li class="reveal"><time>7:20 PM</time><span>Nuestro primer baile</span></li>

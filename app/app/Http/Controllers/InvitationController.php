@@ -37,7 +37,7 @@ class InvitationController extends Controller
             'open' => Guest::rsvpIsOpen(),
             'rsvpUrl' => route('invitation.rsvp', $guest),
             'startsAt' => $starts->toIso8601String(),
-            'endsAt' => $starts->copy()->addHours(9)->toIso8601String(),
+            'endsAt' => $starts->copy()->addHours(6)->addMinutes(30)->toIso8601String(),
             'venue' => config('wedding.venue.name').', '.config('wedding.venue.address'),
         ];
 
